@@ -9,6 +9,7 @@ class PagesController extends AppController {
 		// Welcome block
 		$article = $this->Page->findBySlug('home');
 		$this->set('article', $article);
+		$this->seo = $article['Seo'];
 		
 		// Новости
 		$conditions = array('News.published' => 1);
@@ -30,7 +31,7 @@ class PagesController extends AppController {
 	public function view($slug) {
 		$article = $this->Page->findBySlug($slug);
 		$this->set('article', $article);
-		
+		$this->seo = $article['Seo'];
 		$this->currMenu = $slug;
 	}
 }

@@ -42,9 +42,10 @@ class NewsController extends AppController {
 		}
 		
 		if (!$article && !TEST_ENV) {
-			// return $this->redirect('/');
+			return $this->redirect('/');
 		}
 		
 		$this->set('article', $article);
+		$this->seo = $article['Seo'];
 	}
 }

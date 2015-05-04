@@ -1,5 +1,6 @@
 <?php
 App::uses('Controller', 'Controller');
+
 App::uses('AppModel', 'Model');
 App::uses('Article', 'Article.Model');
 App::uses('Media', 'Media.Model');
@@ -12,7 +13,8 @@ class AppController extends Controller {
 	public $uses = array('Article.Article', 'Media.Media', 'CategoryProduct', 'Settings', 'SiteArticle', 'Page');
 	
 	public $paginate;
-	public $aNavBar = array(), $aBottomLinks = array(), $currMenu = '', $currLink = '', $currCat, $pageTitle = '', $aBreadCrumbs = array();
+	public $aNavBar = array(), $aBottomLinks = array(), $currMenu = '', $currLink = '', 
+		$currCat, $pageTitle = '', $aBreadCrumbs = array(), $seo;
 	
 	public function __construct($request = null, $response = null) {
 		$this->_beforeInit();
@@ -87,7 +89,10 @@ class AppController extends Controller {
 	protected function beforeRenderLayout() {
 		$this->loadModel('CategoryProduct');
 		// ??? на странице если явно не указать objectType - загружаются все статьи - BUG!!!
-		$aCategories = $this->CategoryProduct->getObjectOptions('CategoryProduct'); 
+		$fields = array('id', 'title');
+		$conditions = array('CategoryProduct.object_type' => 'CategoryProduct');
+		$order = 'CategoryProduct.sorting ASC';
+		$aCategories = $this->CategoryProduct->find('list', compact('fields', 'conditions', 'order')); 
 		$this->set('aCategories', $aCategories);
 		
 		$this->loadModel('SiteArticle');
@@ -105,6 +110,8 @@ class AppController extends Controller {
 		$page = $this->Page->findBySlug('tenerife');
 		$this->aNavBar['tenerife']['label'] = $page['Page']['title'];
 		$this->set('aNavBar', $this->aNavBar);
+		
+		$this->set('seo', $this->seo);
 	}
 	
 	protected function getObjectType() {

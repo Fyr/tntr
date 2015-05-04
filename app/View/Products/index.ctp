@@ -28,5 +28,6 @@
 	</div>
 <?
 	echo $this->element('paginate');
+	echo $this->ArticleVars->body($category);
 ?>
 </div>

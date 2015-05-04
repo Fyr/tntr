@@ -4,10 +4,10 @@
 		<div class="slogan"></div>
 		<div class="clearfix topContent">
 			<div class="socials">
-				<a href="#" class="icon twitter"></a>
-				<a href="#" class="icon facebook"></a>
-				<a href="#" class="icon vk"></a>
-				<a href="#" class="icon google"></a>
+				<a href="https://twitter.com/TenturRu" class="icon twitter" target="_blank"></a>
+				<a href="https://www.facebook.com/profile.php?id=100009691983056" class="icon facebook" target="_blank"></a>
+				<a href="https://vk.com/tentur_ru" class="icon vk" target="_blank"></a>
+				<a href="https://plus.google.com/u/0/108953123960392799809/about" class="icon google" target="_blank"></a>
 			</div>
 			<div class="contacts">
 				<div>

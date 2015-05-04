@@ -17,6 +17,9 @@ class ProductsController extends AppController {
 		$this->objectType = 'Product';
 		
 		parent::beforeFilter();
+		
+		$this->loadModel('CategoryProduct');
+		$this->loadModel('Product');
 	}
 	
 	public function beforeRender() {
@@ -39,6 +42,9 @@ class ProductsController extends AppController {
 		if ($filter = $this->request->param('named')) {
 			if (isset($filter['Product.cat_id']) && $filter['Product.cat_id']) {
 				$this->currCat = $filter['Product.cat_id'];
+				$category = $this->CategoryProduct->findById($this->currCat);
+				$this->set('category', $category);
+				$this->seo = Hash::get($category, 'Seo');
 			}
 		}
 	}
@@ -55,6 +61,7 @@ class ProductsController extends AppController {
 		}
 		
 		$this->set('article', $article);
+		$this->seo = $article['Seo'];
 		$this->currCat = $article['Product']['cat_id'];
 	}
 }

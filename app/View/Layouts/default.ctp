@@ -2,9 +2,9 @@
 <html lang="en">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<?=$this->Html->charset()?>
-	<title><?=$title_for_layout?></title>
 <?
+	echo $this->Html->charset();
+	echo $this->element('Seo.seo_info', array('data' => $seo));
 	echo $this->Html->meta('icon');
 
 	echo $this->Html->css(array('style', 'fonts', 'carousel'));

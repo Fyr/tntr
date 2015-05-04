@@ -25,10 +25,10 @@
 ?>
 	</div>
 	<div class="socials">
-		<a class="icon twitter_grey" href="#"></a>
-		<a class="icon facebook_grey" href="#"></a>
-		<a class="icon vk_grey" href="#"></a>
-		<a class="icon google_grey" href="#"></a>
+		<a class="icon twitter_grey" href="https://twitter.com/TenturRu" target="_blank"></a>
+		<a class="icon facebook_grey" href="https://www.facebook.com/profile.php?id=100009691983056" target="_blank"></a>
+		<a class="icon vk_grey" href="https://vk.com/tentur_ru" target="_blank"></a>
+		<a class="icon google_grey" href="https://plus.google.com/u/0/108953123960392799809/about" target="_blank"></a>
 	</div>
 	<div class="bottom">
 		<span class="copyright">Все права защищены © 2015</span>
