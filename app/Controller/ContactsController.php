@@ -1,15 +1,13 @@
 <?php
 App::uses('AppController', 'Controller');
-App::uses('SiteController', 'Controller');
-class SiteContactsController extends SiteController {
-	public $name = 'SiteContacts';
+class ContactsController extends AppController {
+	public $name = 'Contacts';
 	public $uses = array('Page', 'Contact');
 	public $components = array('Recaptcha.Recaptcha');
 	public $helpers = array('Recaptcha.Recaptcha');
 
 	public function index() {
 		$article = $this->Page->findBySlug('contacts');
-		$this->pageTitle = $article['Page']['title'];
 		$this->set('article', $article);
 		
 		if ($this->request->is('post') || $this->request->is('put')) {

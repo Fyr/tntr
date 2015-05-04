@@ -1,8 +1,18 @@
 <?php
 App::uses('Controller', 'Controller');
+App::uses('AppModel', 'Model');
+App::uses('Article', 'Article.Model');
+App::uses('Media', 'Media.Model');
+App::uses('CategoryProduct', 'Model');
+App::uses('Settings', 'Model');
+App::uses('SiteArticle', 'Model');
+App::uses('Page', 'Model');
+
 class AppController extends Controller {
+	public $uses = array('Article.Article', 'Media.Media', 'CategoryProduct', 'Settings', 'SiteArticle', 'Page');
+	
 	public $paginate;
-	public $aNavBar = array(), $aBottomLinks = array(), $currMenu = '', $currLink = '', $pageTitle = '';
+	public $aNavBar = array(), $aBottomLinks = array(), $currMenu = '', $currLink = '', $currCat, $pageTitle = '', $aBreadCrumbs = array();
 	
 	public function __construct($request = null, $response = null) {
 		$this->_beforeInit();
@@ -29,13 +39,17 @@ class AppController extends Controller {
 	}
 	
 	protected function beforeFilterLayout() {
+		$this->loadModel('Settings');
+		$this->Settings->initData();
+		
 		$this->aNavBar = array(
 			'Home' => array('label' => __('Home'), 'href' => array('controller' => 'Pages', 'action' => 'home')),
-			'News' => array('label' => __('News'), 'href' => array('controller' => 'SiteNews', 'action' => 'index')),
-			'Products' => array('label' => __('Products catalogue'), 'href' => array('controller' => 'SiteProducts', 'action' => 'index')),
-			'Articles' => array('label' => __('Articles'), 'href' => array('controller' => 'SiteNews', 'action' => 'index')),
-			'AboutUs' => array('label' => __('About us'), 'href' => array('controller' => 'Pages', 'action' => 'view', 'about-us.html')),
-			'Contacts' => array('label' => __('Contacts'), 'href' => array('controller' => 'SiteContacts', 'action' => 'index'))
+			'News' => array('label' => __('News'), 'href' => array('controller' => 'News', 'action' => 'index')),
+			'Products' => array('label' => __('Products'), 'href' => array('controller' => 'Products', 'action' => 'index')),
+			'Articles' => array('label' => __('Articles'), 'href' => array('controller' => 'Articles', 'action' => 'index')),
+			'klientam' => array('label' => '', 'href' => array('controller' => 'Pages', 'action' => 'view', 'klientam.html')),
+			'tenerife' => array('label' => '', 'href' => array('controller' => 'Pages', 'action' => 'view', 'tenerife.html')),
+			'Contacts' => array('label' => __('Contacts'), 'href' => array('controller' => 'Contacts', 'action' => 'index'))
 		);
 		$this->aBottomLinks = $this->aNavBar;
 		
@@ -44,10 +58,8 @@ class AppController extends Controller {
 	}
 	
 	protected function _getCurrMenu() {
-		if ($this->request->controller == 'Pages') {
-			return 'AboutUs';
-		}
 		$curr_menu = strtolower(str_ireplace('Site', '', $this->request->controller)); // By default curr.menu is the same as controller name
+		/*
 		foreach($this->aNavBar as $currMenu => $item) {
 			if (isset($item['submenu'])) {
 				foreach($item['submenu'] as $_currMenu => $_item) {
@@ -57,6 +69,7 @@ class AppController extends Controller {
 				}
 			}
 		}
+		*/
 		return $curr_menu;
 	}
 	
@@ -66,21 +79,36 @@ class AppController extends Controller {
 		$this->set('aBottomLinks', $this->aBottomLinks);
 		$this->set('currLink', $this->currLink);
 		$this->set('pageTitle', $this->pageTitle);
+		$this->set('aBreadCrumbs', $this->aBreadCrumbs);
 		
 		$this->beforeRenderLayout();
 	}
 	
 	protected function beforeRenderLayout() {
-		$this->loadModel('Media.Media');
-		$this->set('aSlider', $this->Media->getObjectList('Slider'));
+		$this->loadModel('CategoryProduct');
+		// ??? на странице если явно не указать objectType - загружаются все статьи - BUG!!!
+		$aCategories = $this->CategoryProduct->getObjectOptions('CategoryProduct'); 
+		$this->set('aCategories', $aCategories);
 		
-		$this->loadModel('CategoryProduct');
-		$aCategories = $this->CategoryProduct->find('list'); //getObjectOptions();
-		$this->set('aCategories', $aCategories);
-		/*
-		$this->loadModel('CategoryProduct');
-		$aCategories = $this->CategoryProduct->find('list'); //getObjectOptions();
-		$this->set('aCategories', $aCategories);
-		*/
+		$this->loadModel('SiteArticle');
+		$sbArticle = Hash::get($this->SiteArticle->getRandomRows(1, array('SiteArticle.published' => 1, 'SiteArticle.featured' => 1)), 0);
+		
+		$this->loadModel('News');
+		$sbNews = Hash::get($this->News->getRandomRows(1, array('News.published' => 1, 'News.featured' => 1)), 0);
+		
+		$this->set(compact('sbArticle', 'sbNews'));
+		$this->set('currCat', $this->currCat);
+		
+		$this->loadModel('Page');
+		$page = $this->Page->findBySlug('klientam');
+		$this->aNavBar['klientam']['label'] = $page['Page']['title'];
+		$page = $this->Page->findBySlug('tenerife');
+		$this->aNavBar['tenerife']['label'] = $page['Page']['title'];
+		$this->set('aNavBar', $this->aNavBar);
+	}
+	
+	protected function getObjectType() {
+		$objectType = $this->request->param('objectType');
+		return ($objectType && in_array($objectType, array('SiteArticle', 'News'))) ? $objectType : 'SiteArticle';
 	}
 }

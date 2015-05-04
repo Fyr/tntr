@@ -5,6 +5,8 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+  border-radius: 10px;
+  display: block;
 }
 .carousel-inner > .item {
   display: none;

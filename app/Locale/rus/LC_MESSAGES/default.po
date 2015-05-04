@@ -40,8 +40,8 @@ msgstr "Настройки"
 msgid "Home"
 msgstr "Главная"
 
-msgid "Products catalogue"
-msgstr "Каталог продукции"
+msgid "Products"
+msgstr "Услуги"
 
 msgid "About us"
 msgstr "О нас"
@@ -158,7 +158,7 @@ msgid "Subcategory"
 msgstr "Подкатегория"
 
 msgid "Product categories"
-msgstr "Категории продуктов"
+msgstr "Категории услуг"
 
 msgid "CMS Development"
 msgstr "Разработка CMS"
@@ -186,9 +186,6 @@ msgstr "Стат.страницы"
 
 msgid "Subcategories"
 msgstr "Подкатегории"
-
-msgid "Products"
-msgstr "Продукты"
 
 msgid "Create Article"
 msgstr "Создать Статью"
@@ -447,3 +444,24 @@ msgstr "Редактировать подкатегорию для статьи"
 
 msgid "Featured product"
 msgstr "Спец.предложение"
+
+msgid "Admin Email"
+msgstr "Email администратора"
+
+msgid "Office Address"
+msgstr "Адрес оффиса"
+
+msgid "Phone1"
+msgstr "Тел."
+
+msgid "Phone2"
+msgstr "Доп.тел."
+
+msgid "Send message"
+msgstr "Отправить сообщение"
+
+msgid "Your message"
+msgstr "Ваше сообщение"
+
+msgid "Services"
+msgstr "Клиентам"

@@ -11,6 +11,7 @@ class Media extends AppModel {
 		$this->PHMedia = new MediaPath();
     }
     
+    /*
     public function afterFind($results, $primary = false) {
     	foreach($results as &$_row) {
     		$row = $_row[$this->alias];
@@ -34,7 +35,7 @@ class Media extends AppModel {
     	}
     	return $results;
     }
-    
+    */
 	        
     /**
      * Removes actual media-files before delete a record

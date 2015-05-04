@@ -1,12 +1,11 @@
+<?
+	$title = ($currCat) ? $aArticles[0]['CategoryProduct']['title'] : 'Наши услуги';
+?>
 <div class="block">
-	<?=$this->element('title', array('pageTitle' => $article['Page']['title']))?>
-	<?=$this->ArticleVars->body($article)?>
-</div>
-<div class="block">
-	<?=$this->element('title', array('pageTitle' => __('News')))?>
+	<?=$this->element('title', array('pageTitle' => $title))?>
 	<div class="news">
 <?
-	foreach($news as $article) {
+	foreach($aArticles as $article) {
 		$this->ArticleVars->init($article, $url, $title, $teaser, $src, '200x');
 ?>
 		<div class="newsItem">
@@ -27,4 +26,7 @@
 	}
 ?>
 	</div>
+<?
+	echo $this->element('paginate');
+?>
 </div>
