@@ -6,6 +6,7 @@ App::uses('CategoryProduct', 'Model');
 App::uses('Product', 'Model');
 class ProductsController extends AppController {
 	public $name = 'Products';
+	public $components = array('Table.PCTableGrid');
 	public $uses = array('Article.Article', 'CategoryProduct', 'Product');
 	public $helpers = array('ObjectType');
 	
@@ -30,23 +31,31 @@ class ProductsController extends AppController {
 	}
 	
 	public function index() {
+		// подсветить текущую категорию
+		if ($filter = $this->request->param('named')) {
+			if (isset($filter['page'])) {
+				unset($filter['page']);
+			}
+			if (isset($filter['Product.cat_id']) && $filter['Product.cat_id']) {
+				$this->currCat = $filter['Product.cat_id'];
+				
+				if (($page = $this->request->param('page')) && $page <= 1) {
+					$category = $this->CategoryProduct->findById($this->currCat);
+					$this->set('category', $category);
+					$this->seo = Hash::get($category, 'Seo');
+				}
+			}
+		}
+		
 		$this->paginate = array(
-			'conditions' => array_merge(array($this->objectType.'.published' => 1), $this->request->param('named')),
+			'conditions' => array_merge(array($this->objectType.'.published' => 1), $filter),
 			'limit' => self::PER_PAGE, 
 			'order' => $this->objectType.'.created DESC',
 			'page' => $this->request->param('page')
 		);
 		$this->set('aArticles', $this->paginate($this->objectType));
 		
-		// подсветить текущую категорию
-		if ($filter = $this->request->param('named')) {
-			if (isset($filter['Product.cat_id']) && $filter['Product.cat_id']) {
-				$this->currCat = $filter['Product.cat_id'];
-				$category = $this->CategoryProduct->findById($this->currCat);
-				$this->set('category', $category);
-				$this->seo = Hash::get($category, 'Seo');
-			}
-		}
+		
 	}
 	
 	public function view($slug) {

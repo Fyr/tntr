@@ -28,6 +28,8 @@
 	</div>
 <?
 	echo $this->element('paginate');
-	echo $this->ArticleVars->body($category);
+	if (isset($category) && $category) {
+		echo $this->ArticleVars->body($category);
+	}
 ?>
 </div>
