@@ -4,6 +4,9 @@ msgstr "Пользователь"
 msgid "Invalid username or password, try again"
 msgstr "Неправильное имя пользователя или пароль"
 
+msgid "Text"
+msgstr "Текст"
+
 msgid "Static Pages"
 msgstr "Стат.страницы"
 
@@ -14,16 +17,16 @@ msgid "Categories"
 msgstr "Категории"
 
 msgid "Tech.params"
-msgstr "Тех.параметры"
+msgstr "Параметры услуг"
 
 msgid "Create tech.param"
-msgstr "Создать тех.параметр"
+msgstr "Создать параметр"
 
 msgid "Edit tech.param"
-msgstr "Редактировать тех.параметр"
+msgstr "Редактировать параметр"
 
 msgid "Tech-params"
-msgstr "Тех.параметры"
+msgstr "Параметры услуг"
 
 msgid "Products by sections"
 msgstr "Каталог по разделам"
@@ -37,8 +40,8 @@ msgstr "Настройки"
 msgid "Home"
 msgstr "Главная"
 
-msgid "Products catalogue"
-msgstr "Каталог продукции"
+msgid "Products"
+msgstr "Услуги"
 
 msgid "About us"
 msgstr "О нас"
@@ -154,6 +157,9 @@ msgstr "Обработка запроса..."
 msgid "Subcategory"
 msgstr "Подкатегория"
 
+msgid "Product categories"
+msgstr "Категории услуг"
+
 msgid "CMS Development"
 msgstr "Разработка CMS"
 
@@ -196,6 +202,9 @@ msgstr "Создать Категорию"
 msgid "Create Subcategory"
 msgstr "Создать Подкатегорию"
 
+msgid "Create Product category"
+msgstr "Создать категорию продукта"
+
 msgid "Create Product"
 msgstr "Создать Продукт"
 
@@ -213,6 +222,9 @@ msgstr "Редактировать Категорию"
 
 msgid "Edit Subcategory"
 msgstr "Редактировать Подкатегорию"
+
+msgid "Edit Product сategory"
+msgstr "Редактировать категорию продукта"
 
 msgid "Edit Product"
 msgstr "Редактировать Продукт"
@@ -296,6 +308,9 @@ msgid "Your password and its confirmation do not match"
 msgstr "Пароль и подтверждение пароля не совпадают"
 
 msgid "Sort Order"
+msgstr "Сортировка"
+
+msgid "Sort order"
 msgstr "Сортировка"
 
 msgid "Upload"
@@ -387,4 +402,93 @@ msgstr "Символ-разделитель для дробн.части"
 
 msgid "Div Int"
 msgstr "Символ-разделитель для цел.части"
+
+msgid "Catalog"
+msgstr "Каталог"
+
+msgid "System"
+msgstr "Система"
+
+msgid "Sections"
+msgstr "Разделы"
+
+msgid "Edit section"
+msgstr "Редактировать раздел"
+
+msgid "Create section"
+msgstr "Создать раздел"
+
+msgid "News categories"
+msgstr "Категории новостей"
+
+msgid "Article categories"
+msgstr "Категории статей"
+
+msgid "Article subcategories"
+msgstr "Подкатегории статей"
+
+msgid "Create News category"
+msgstr "Создать категорию для новости"
+
+msgid "Create Article category"
+msgstr "Создать категорию для статьи"
+
+msgid "Create Article subcategory"
+msgstr "Создать подкатегорию для статьи"
+
+msgid "Edit News category"
+msgstr "Редактировать категорию для новости"
+
+msgid "Edit Article category"
+msgstr "Редактировать категорию для статьи"
+
+msgid "Edit Article subcategory"
+msgstr "Редактировать подкатегорию для статьи"
+
+msgid "Featured product"
+msgstr "Спец.предложение"
+
+msgid "Admin Email"
+msgstr "Email администратора"
+
+msgid "Office Address"
+msgstr "Адрес оффиса"
+
+msgid "Phone1"
+msgstr "Тел."
+
+msgid "Phone2"
+msgstr "Доп.тел."
+
+msgid "Send message"
+msgstr "Отправить сообщение"
+
+msgid "Your message"
+msgstr "Ваше сообщение"
+
+msgid "Services"
+msgstr "Клиентам"
+
+msgid "Мessage from Contacts page"
+msgstr "Сообщение со страницы Контактов"
+
+msgid "Prices"
+msgstr "Цены"
+
+msgid "Contract"
+msgstr "Договор"
+
+msgid "Settings have been saved"
+msgstr "Настройки успешно сохранены"
+
+msgid "Related Products"
+msgstr "Доп.услуги"
+msgid "Upload counters"
+msgstr "rus:Upload counters!"
+
+msgid "Upload new products"
+msgstr "rus:Upload new products!"
+
+msgid "Edit Product category"
+msgstr "rus:Edit Product category!"
 

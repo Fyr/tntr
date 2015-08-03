@@ -14,7 +14,7 @@ class AppController extends Controller {
 	
 	public $paginate;
 	public $aNavBar = array(), $aBottomLinks = array(), $currMenu = '', $currLink = '', 
-		$currCat, $pageTitle = '', $aBreadCrumbs = array(), $seo;
+		$currCat, $pageTitle = '', $aBreadCrumbs = array(), $seo, $cart = array();
 	
 	public function __construct($request = null, $response = null) {
 		$this->_beforeInit();
@@ -57,6 +57,11 @@ class AppController extends Controller {
 		
 		$this->currMenu = $this->_getCurrMenu();
 	    $this->currLink = $this->currMenu;
+	    
+	    $this->cart = (isset($_COOKIE['cart'])) ? str_replace('\"', '"', $_COOKIE['cart']) : '{}';
+		$this->cart = (array) json_decode($this->cart);
+		$this->cart = ($this->cart) ? array_combine(array_keys($this->cart), array_values($this->cart)) : array();
+		$this->set('aCart', $this->cart);
 	}
 	
 	protected function _getCurrMenu() {
@@ -111,6 +116,8 @@ class AppController extends Controller {
 		$this->aNavBar['tenerife']['label'] = $page['Page']['title'];
 		$this->set('aNavBar', $this->aNavBar);
 		
+		$this->set('liveweb_article', $this->Page->findBySlug('tenerife-live-webcam'));
+		
 		$this->set('seo', $this->seo);
 	}
 	
@@ -118,4 +125,15 @@ class AppController extends Controller {
 		$objectType = $this->request->param('objectType');
 		return ($objectType && in_array($objectType, array('SiteArticle', 'News'))) ? $objectType : 'SiteArticle';
 	}
+	
+		/**
+	 * Sets flashing message
+	 *
+	 * @param str $msg
+	 * @param str $type - must be 'success', 'error' or empty
+	 */
+	protected function setFlash($msg, $type = 'info') {
+		$this->Session->setFlash($msg, 'default', array(), $type);
+	}
+
 }

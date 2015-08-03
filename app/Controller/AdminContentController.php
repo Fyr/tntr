@@ -33,7 +33,7 @@ class AdminContentController extends AdminController {
         		'order' => array('CategoryProduct.sorting' => 'ASC')
         	),
         	'Product' => array(
-        		'fields' => array('title', 'slug', 'featured'),
+        		'fields' => array('title', 'slug', 'price', 'featured'),
         	),
         );
         
@@ -109,6 +109,9 @@ class AdminContentController extends AdminController {
 		
 		if ($objectType == 'Product') {
 			$this->set('aCategoryOptions', $this->Article->getObjectOptions('CategoryProduct'));
+			$conditions = array('object_type' => 'Product', 'published' => true);
+			$order = 'Article.title';
+			$this->set('aProductOptions', $this->Article->find('list', compact('conditions', 'order')));
 		} elseif ($objectType == 'SiteArticle') {
 			$aCategoryOptions = $this->SubcategoryArticle->find('all');
 			$aCategoryOptions = Hash::combine($aCategoryOptions, '{n}.SubcategoryArticle.id', '{n}.SubcategoryArticle.title', '{n}.CategoryArticle.title');

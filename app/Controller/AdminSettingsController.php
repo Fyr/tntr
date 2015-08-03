@@ -12,13 +12,15 @@ class AdminSettingsController extends AdminController {
 		parent::beforeFilter();
 	}
     
-    public function index() {
+    public function index($tpl = '') {
         if ($this->request->is('post') || $this->request->is('put')) {
         	$this->request->data('Settings.id', 1);
         	$this->Settings->save($this->request->data);
-        	$this->redirect(array('action' => 'index', '?' => array('sucess' => 1)));
+        	$this->setFlash(__('Settings have been saved'), 'success');
+        	return $this->redirect(array('action' => 'index', $tpl));
         }
         $this->request->data = $this->Settings->getData();
+        $this->set('tpl', $tpl);
     }
     
     public function sections() {

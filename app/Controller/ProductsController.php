@@ -2,13 +2,16 @@
 App::uses('AppController', 'Controller');
 App::uses('AppModel', 'Model');
 App::uses('Article', 'Article.Model');
+App::uses('PMFormField', 'Form.Model');
 App::uses('CategoryProduct', 'Model');
 App::uses('Product', 'Model');
+App::uses('Page', 'Model');
+App::uses('CakeEmail', 'Network/Email');
 class ProductsController extends AppController {
 	public $name = 'Products';
 	public $components = array('Table.PCTableGrid');
-	public $uses = array('Article.Article', 'CategoryProduct', 'Product');
-	public $helpers = array('ObjectType');
+	public $uses = array('Article.Article', 'CategoryProduct', 'Product', 'Form.PMFormField', 'Page');
+	public $helpers = array('ObjectType', 'Form.PHFormData');
 	
 	const PER_PAGE = 5;
 	
@@ -72,5 +75,65 @@ class ProductsController extends AppController {
 		$this->set('article', $article);
 		$this->seo = $article['Seo'];
 		$this->currCat = $article['Product']['cat_id'];
+	}
+	
+	public function cart() {
+		$aProducts = $this->Product->findAllById(array_keys($this->cart));
+		$this->set('aProducts', $aProducts);
+		
+		$aCatID = array_unique(Hash::extract($aProducts, '{n}.Product.cat_id'));
+		
+		$conditions = array('object_type' => 'CategoryParam', 'object_id' => $aCatID);
+		$order = 'sort_order';
+		$fields = $this->PMFormField->find('all', compact('conditions', 'order'));
+		$fields = Hash::combine($fields, '{n}.PMFormField.id', '{n}', '{n}.PMFormField.object_id');
+		$this->set('fields', $fields);
+		
+		$aCategories = $this->CategoryProduct->find('list');
+		$this->set('aCategories', $aCategories);
+		$this->set('terms', $this->Page->findBySlug('terms'));
+		if ($this->request->is(array('put', 'post'))) {
+			// отправить заказ на почту админу
+			$Email = new CakeEmail();
+			$Email->template('new_order')->viewVars(compact('aProducts', 'fields', 'aCategories'))
+				->emailFormat('html')
+				->from('info@'.Configure::read('domain.url'))
+				->to(Configure::read('Settings.admin_email'))
+				->bcc('fyr.work@gmail.com')
+				->subject(Configure::read('domain.title').': '.__('New order'))
+				->send();
+			
+			$this->layout = 'print_doc';
+			
+			$this->set('print_header', $this->_printTpl(Configure::read('Settings.print_header'), $this->request->data('Order')));
+			$this->set('print_footer', $this->_printTpl(Configure::read('Settings.print_footer'), $this->request->data('Order')));
+			return $this->render('print_order');
+		}
+		
+		// Get related products
+		$xproducts = array();
+		foreach($aProducts as $product) {
+			if ($product['Product']['xproducts']) {
+				$xproducts = explode(',', $product['Product']['xproducts']);
+				$conditions = array('Product.id' => $xproducts, 'Product.published' => 1);
+				$order = 'FIELD(Product.id, '.implode(',', $xproducts).')';
+				break;
+			}
+		} 
+		
+		if (!$xproducts) {
+			$conditions = array('Product.cat_id' => $aCatID, 'Product.published' => 1);
+			$order = array('Product.featured DESC', 'RAND()');
+		}
+		$limit = 3;
+		$aRelated = $this->Product->find('all', compact('conditions', 'order', 'limit'));
+		$this->set('aRelated', $aRelated);
+	}
+	
+	private function _printTpl($tpl, $data) {
+		foreach($data as $key => $val) {
+			$tpl = str_replace('{$'.$key.'}', $val, $tpl);
+		}
+		return $tpl;
 	}
 }

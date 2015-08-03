@@ -75,7 +75,6 @@ F3M2011
 		'options' => array_combine($aMotorOptions, $aMotorOptions), 
 		'label' => array('text' => __('Motor'), 'class' => 'control-label')
 	);
-	fdebug($options);
 	echo $this->PHForm->input('selectmotor', $options);
 	*/
 	echo $this->PHForm->input('code');

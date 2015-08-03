@@ -12,7 +12,7 @@
 <?
 		if ($src) {
 ?>
-			<a href="<?=$url?>"><img class="thumb" src="<?=$src?>" alt="<?=$title?>" /></a>
+			<a href="<?=$url?>"><img class="thumb" src="<?=$src?>" alt="<?=h($title)?>" /></a>
 <?
 		}
 ?>

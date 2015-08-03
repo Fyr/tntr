@@ -19,4 +19,13 @@ class ArticleVarsHelper extends AppHelper {
 	public function body($article) {
 		return $article[$this->getObjectType($article)]['body'];
 	}
+	
+	public function price($price) {
+		if (is_array($price)) {
+			$price = intval(Hash::get($price, 'Product.price'));
+		}
+		return Configure::read('Settings.price_prefix')
+			.number_format($price, 0, '.', Configure::read('Settings.int_div'))
+			.Configure::read('Settings.price_postfix');
+	}
 }

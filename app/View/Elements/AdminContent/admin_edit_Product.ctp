@@ -4,3 +4,4 @@
 	echo $this->element('Article.edit_slug');
 	echo $this->PHForm->input('cat_id', array('options' => $aCategoryOptions, 'label' => array('text' => __('Category'), 'class' => 'control-label')));
 	echo $this->PHForm->input('teaser');
+	echo $this->PHForm->input('price');

@@ -30,7 +30,7 @@ aside {
 }
 
 .icon-open {
-	background: url("../img/ui-icons_454545_256x240.png") no-repeat -34px -16px;
+	background: url("/img/jquery-ui/ui-icons_454545_256x240.png") no-repeat -34px -16px;
 }
 
 .icon-open.opened {

@@ -1,0 +1,32 @@
+.error-message, .error {
+	font-weight: bold;
+	color: #f00;
+}
+form label {
+	display: block;
+	margin-top: 10px;
+}
+form input[type=text], form input[type=email], form textarea {
+	width: 310px;
+}
+.more.cart img {
+	position: relative;
+	top: 10px;
+}
+.more.cart a {
+	margin-left: 10px;
+}
+
+.sb-cart h2 {
+	color: #d00000;
+}
+.sb-cart h2 img {
+	float: left; position: relative; top: -5px;
+}
+.sb-cart .more a {
+	background: #d00000;
+}
+
+.sb-cart .more a:hover {
+	background: #df0000;
+}

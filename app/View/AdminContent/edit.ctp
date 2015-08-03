@@ -19,6 +19,9 @@
 		'Text' => $this->element('Article.edit_body'),
 		'SEO' => $this->element('Seo.edit')
     );
+    if ($objectType == 'Product') {
+    	$aTabs['Related Products'] = $this->element('/AdminContent/admin_edit_RelatedProducts');
+    }
     if ($id) {
         $aTabs['Media'] = $this->element('Media.edit', array('object_type' => $objectType, 'object_id' => $id));
     }

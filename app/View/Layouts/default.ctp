@@ -7,7 +7,7 @@
 	echo $this->element('Seo.seo_info', array('data' => $seo));
 	echo $this->Html->meta('icon');
 
-	echo $this->Html->css(array('style', 'fonts', 'carousel'));
+	echo $this->Html->css(array('style', 'fonts', 'carousel', 'extra'));
 	
 	$aScripts = array(
 		'vendor/jquery/jquery-1.10.2.min',
@@ -24,6 +24,9 @@
                 .gradient { filter: none; }
             </style>
         <![endif]-->
+<script type="text/javascript">
+cartURL = '<?=$this->Html->url(array('controller' => 'Products', 'action' => 'cart'))?>';
+</script>
 	</head>
 	<body>
 		<div class="topBack">
