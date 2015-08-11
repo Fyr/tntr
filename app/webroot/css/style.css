@@ -166,17 +166,19 @@ h2 { font-size: 18px; color: #86ba27; text-transform: uppercase; font-weight: 70
 	.footer .left { float: left; }
 	.footer .copyright {  display: inline-block; padding: 0 0 0 7px; vertical-align: middle;}
     .footer .menu { float: left; margin: 5px 0 0 0; }
-        .footer .menu a { color: #2b2b2b; text-decoration: none; font-size: 16px; display: inline-block; margin-left: 35px; }
+        .footer .menu a { color: #2b2b2b; text-decoration: none; font-size: 16px; display: inline-block; margin-left: 25px; }
 		.footer .menu a:first-child {}
         .footer .menu a:hover, .footer .menu a.active { text-decoration: underline; }
 
-	.footer .socials { float: right; margin: 5px 50px 0 0;}
-	.footer .bottom { clear: both; }
+	.footer .socials { float: right; margin: 5px 40px 0 0;}
+	.footer .bottom { clear: both; position: relative; }
 		.footer .bottom a { color: #525252; text-decoration: none;}
 		.footer .bottom .skype, .footer .bottom .letter { margin-right: 11px;}
 		.footer .bottom .phoneFooter { margin-right: 5px;}
 	.footer .phones {  display: inline-block; vertical-align: middle; margin: 0 0 0 35px;}
 	.footer .skypeName  { margin: 0 40px 0 40px }
+
+.yandexMetrika { position: absolute; right: 40px;}
 
     
 .pagination { text-align: center; padding-bottom: 0;}

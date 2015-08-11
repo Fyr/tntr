@@ -51,6 +51,6 @@ cartURL = '<?=$this->Html->url(array('controller' => 'Products', 'action' => 'ca
 				</div>
 			</div>
 		</div>
-		<?=(TEST_ENV) ? $this->element('sql_dump') : ''?>
+		<?//(TEST_ENV) ? $this->element('sql_dump') : ''?>
 	</body>
 </html>
