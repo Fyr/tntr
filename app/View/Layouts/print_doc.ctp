@@ -1,11 +1,12 @@
 <?
 header('Content-type: application/ms-word');
-//header('Content-Type: text/html; charset=utf8');
+// header('Content-Type: text/html; charset=windows-1251');
 header('Content-Disposition: attachment; filename=order.doc');
 ?><!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=windows-1251">
+<meta http-equiv="Content-Type" content="application/msword">
+<meta http-equiv="Cache-Control" content="no-cache">
 <style type="text/css">
 td {
     vertical-align: middle;

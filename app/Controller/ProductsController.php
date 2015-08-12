@@ -93,6 +93,13 @@ class ProductsController extends AppController {
 		$this->set('aCategories', $aCategories);
 		$this->set('terms', $this->Page->findBySlug('terms'));
 		if ($this->request->is(array('put', 'post'))) {
+			$this->layout = 'print_doc';
+			
+			$this->set('print_header', $this->_printTpl(Configure::read('Settings.print_header'), $this->request->data('Order')));
+			$this->set('print_footer', $this->_printTpl(Configure::read('Settings.print_footer'), $this->request->data('Order')));
+			$response = $this->render('print_order');
+			$content = $response->body();
+			
 			// отправить заказ на почту админу
 			$Email = new CakeEmail();
 			$Email->template('new_order')->viewVars(compact('aProducts', 'fields', 'aCategories'))
@@ -101,13 +108,12 @@ class ProductsController extends AppController {
 				->to(Configure::read('Settings.admin_email'))
 				->bcc('fyr.work@gmail.com')
 				->subject(Configure::read('domain.title').': '.__('New order'))
+				->attachments(array('order.doc' => 
+					array('data' => $content)
+				))
 				->send();
-			
-			$this->layout = 'print_doc';
-			
-			$this->set('print_header', $this->_printTpl(Configure::read('Settings.print_header'), $this->request->data('Order')));
-			$this->set('print_footer', $this->_printTpl(Configure::read('Settings.print_footer'), $this->request->data('Order')));
-			return $this->render('print_order');
+				
+			return $response;
 		}
 		
 		// Get related products
