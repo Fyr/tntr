@@ -19,9 +19,15 @@
 		<div class="newsItem">
 <?
 	$total = 0;
-	foreach($aProducts as $_article) {
-		$this->ArticleVars->init($_article, $url, $title, $teaser, $src, 'noresize', $featured, $id);
-		$total+= $_article['Product']['price'];
+	foreach($aProducts as $cat_id => $products) {
+		$title = $products[0]['CategoryProduct']['title'];
+?>
+		<br/>
+		<b><?=$title?></b>
+<?
+		foreach($products as $_article) {
+			$this->ArticleVars->init($_article, $url, $title, $teaser, $src, 'noresize', $featured, $id);
+			$total+= $_article['Product']['price'];
 ?>
 		
 			<div class="description">
@@ -30,6 +36,7 @@
 				<span style="float:right"><?=$this->ArticleVars->price($_article)?></span>
 			</div>
 <?
+		}
 	}
 ?>
 		</div>

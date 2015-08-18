@@ -10,6 +10,7 @@ header('Content-Disposition: attachment; filename=order.doc');
 <style type="text/css">
 td {
     vertical-align: middle;
+    padding: 3px 5px;
 }
 .align-right {
 	text-align: right;

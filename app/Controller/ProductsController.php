@@ -78,10 +78,15 @@ class ProductsController extends AppController {
 	}
 	
 	public function cart() {
-		$aProducts = $this->Product->findAllById(array_keys($this->cart));
+		$products = $this->Product->findAllById(array_keys($this->cart));
+		$aProducts = array();
+		foreach($products as $product) {
+			$catID = $product['Product']['cat_id'];
+			$aProducts[$catID][] = $product;
+		}
 		$this->set('aProducts', $aProducts);
 		
-		$aCatID = array_unique(Hash::extract($aProducts, '{n}.Product.cat_id'));
+		$aCatID = array_unique(Hash::extract($products, '{n}.Product.cat_id'));
 		
 		$conditions = array('object_type' => 'CategoryParam', 'object_id' => $aCatID);
 		$order = 'sort_order';
@@ -112,13 +117,13 @@ class ProductsController extends AppController {
 					array('data' => $content)
 				))
 				->send();
-				
+			
 			return $response;
 		}
 		
 		// Get related products
 		$xproducts = array();
-		foreach($aProducts as $product) {
+		foreach($products as $product) {
 			if ($product['Product']['xproducts']) {
 				$xproducts = explode(',', $product['Product']['xproducts']);
 				$conditions = array('Product.id' => $xproducts, 'Product.published' => 1);
