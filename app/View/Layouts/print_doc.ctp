@@ -8,7 +8,7 @@ header('Content-Disposition: attachment; filename=order.doc');
 <meta http-equiv="Content-Type" content="application/msword">
 <meta http-equiv="Cache-Control" content="no-cache">
 <style type="text/css">
-td {
+td, th {
     vertical-align: middle;
     padding: 3px 5px;
 }
