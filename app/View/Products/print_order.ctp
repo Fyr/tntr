@@ -24,7 +24,7 @@
 ?>
 	<tr>
 		<td><b>Итого:</b></td>
-		<td><b><?=$this->ArticleVars->price($total)?></b></td>
+		<td align="right"><b><?=$this->ArticleVars->price($total)?></b></td>
 	</tr>
 </tbody>
 </table>
