@@ -47,7 +47,7 @@ a:hover { text-decoration: none;}
 .bottomBack { background: url('../img/akva.png') no-repeat center 1032px;  }
 
 .header {}
-	.header .logo { width: 257px; height: 242px; display: block; float: left; margin: 43px 0 0 10px;}
+	.header .logo { width: 257px; height: 244px; display: block; float: left; margin: 43px 0 0 10px; background: url('../img/logo_header.png') no-repeat left top; }
 	.header .right { padding: 33px 77px 0 0; margin: 0 0 0 302px; text-align: right;}
 	.header .slogan { background: url('../img/tenerif.png') no-repeat left top; width: 493px; height: 71px; margin: 0 32px 0 0; display: inline-block;}
 	.header .topContent { text-align: left; margin: 50px 0 0 0;}
@@ -165,8 +165,8 @@ h2 { font-size: 18px; color: #86ba27; text-transform: uppercase; font-weight: 70
 .footer { margin-top: 25px; padding-bottom: 15px;  }
 	.footer .left { float: left; }
 	.footer .copyright {  display: inline-block; padding: 0 0 0 7px; vertical-align: middle;}
-    .footer .menu { float: left; margin: 5px 0 0 0; }
-        .footer .menu a { color: #2b2b2b; text-decoration: none; font-size: 16px; display: inline-block; margin-left: 25px; }
+	.footer .menu { float: left; margin: 5px 0 0 0; }
+        .footer .menu a { color: #2b2b2b; text-decoration: none; font-size: 14px; display: inline-block; margin-left: 18px; }
 		.footer .menu a:first-child {}
         .footer .menu a:hover, .footer .menu a.active { text-decoration: underline; }
 

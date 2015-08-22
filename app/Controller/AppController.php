@@ -51,7 +51,8 @@ class AppController extends Controller {
 			'Articles' => array('label' => __('Articles'), 'href' => array('controller' => 'Articles', 'action' => 'index')),
 			'klientam' => array('label' => '', 'href' => array('controller' => 'Pages', 'action' => 'view', 'klientam.html')),
 			'tenerife' => array('label' => '', 'href' => array('controller' => 'Pages', 'action' => 'view', 'tenerife.html')),
-			'Contacts' => array('label' => __('Contacts'), 'href' => array('controller' => 'Contacts', 'action' => 'index'))
+			'Contacts' => array('label' => __('Contacts'), 'href' => array('controller' => 'Contacts', 'action' => 'index')),
+			'Sitemap' => array('label' => __('Site map'), 'href' => array('controller' => 'Sitemap', 'action' => 'index'))
 		);
 		$this->aBottomLinks = $this->aNavBar;
 		

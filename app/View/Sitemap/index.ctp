@@ -2,6 +2,9 @@
 	<?=$this->element('title', array('pageTitle' => 'Карта сайта'))?>
 <?
 	foreach($aNavBar as $id => $item) {
+		if ($id == 'Sitemap') {
+			continue;
+		}
 		$url = Router::url($item['href']);
 		if (isset($item['href']['action']) && $item['href']['action'] == 'index') {
 			$url.= '/';
