@@ -137,4 +137,9 @@ class AppController extends Controller {
 		$this->Session->setFlash($msg, 'default', array(), $type);
 	}
 
+	public function redirect404() {
+		// return $this->redirect(array('controller' => 'pages', 'action' => 'notExists'), 404);
+		throw new NotFoundException();
+	}
+
 }

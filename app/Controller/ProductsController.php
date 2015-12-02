@@ -69,7 +69,8 @@ class ProductsController extends AppController {
 		}
 		
 		if (!$article && !TEST_ENV) {
-			// return $this->redirect('/');
+			$this->redirect404();
+			return;
 		}
 		
 		$this->set('article', $article);

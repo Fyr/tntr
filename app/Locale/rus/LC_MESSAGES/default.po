@@ -487,11 +487,14 @@ msgstr "Доп.услуги"
 msgid "New order"
 msgstr "Новый заказ"
 
-msgid "Upload new products"
-msgstr "rus:Upload new products!"
-
 msgid "Edit Product category"
-msgstr "rus:Edit Product category!"
+msgstr "Редактировать категория продукта"
 
 msgid "Site map"
 msgstr "Карта сайта"
+
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+msgid "Error!"
+msgstr "Ошибка!"

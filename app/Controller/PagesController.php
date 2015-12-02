@@ -30,6 +30,10 @@ class PagesController extends AppController {
 	
 	public function view($slug) {
 		$article = $this->Page->findBySlug($slug);
+		if (!$article) {
+			$this->redirect404();
+			return;
+		}
 		$this->set('article', $article);
 		$this->seo = $article['Seo'];
 		$this->currMenu = $slug;
