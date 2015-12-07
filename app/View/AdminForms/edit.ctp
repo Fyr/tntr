@@ -23,7 +23,7 @@
 ?>
 	</span>
 <?
-	echo $this->PHForm->input('sort_order');
+	echo $this->PHForm->input('sort_order', array('class' => 'input-mini'));
 	echo $this->PHForm->input('required');
 	echo $this->element('admin_content_end');
 	echo $this->element('Form.form_actions', array('backURL' => $this->Html->url(array('action' => 'index', $objectID))));

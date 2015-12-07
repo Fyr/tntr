@@ -17,9 +17,10 @@ class PHFormDataHelper extends AppHelper {
 	private function _renderInput($field, $value) {
 		$aDefaultOptions = array(
 			FieldTypes::STRING => array('class' => 'input-medium', 'type' => 'text'),
-			FieldTypes::INT => array('class' => 'input-medium', 'type' => 'text'),
-			FieldTypes::FLOAT => array('class' => 'input-medium', 'type' => 'text'),
-			FieldTypes::TEXTAREA => array('class' => 'input-medium'),
+			FieldTypes::INT => array('class' => 'input-small', 'type' => 'text'),
+			FieldTypes::DATE => array('class' => 'input-small datepicker', 'type' => 'text'),
+			FieldTypes::FLOAT => array('class' => 'input-small', 'type' => 'text'),
+			FieldTypes::TEXTAREA => array('class' => 'input-xlarge', 'type' => 'textarea'),
 			FieldTypes::SELECT => array('class' => 'input-medium', 'options' => $this->getSelectOptions($field['options'])),
 			FieldTypes::MULTISELECT => array('class' => 'input-medium multiselect', 'options' => $this->getSelectOptions($field['options']), 'multiple' => true),
 			// FieldTypes::UPLOAD_FILE => array('class' => 'input-medium', 'type' => 'text'),
@@ -33,6 +34,13 @@ class PHFormDataHelper extends AppHelper {
 		
 		if (isset($aDefaultOptions[$field['field_type']])) {
 			$options = array_merge($aDefaultOptions[$field['field_type']], $options);
+		}
+		if (isset($field['_options'])) {
+			$options = array_merge($options, $field['_options']);
+		}
+		if (isset($field['required']) && $field['required']) {
+			$options['required'] = true;
+			$options['label']['text'] = '<span class="required">*</span>'.$field['label'];
 		}
 		return $this->PHForm->input('PMFormData.fk_'.$field['id'], $options);
 	}

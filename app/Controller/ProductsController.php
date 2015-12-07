@@ -57,8 +57,6 @@ class ProductsController extends AppController {
 			'page' => $this->request->param('page')
 		);
 		$this->set('aArticles', $this->paginate($this->objectType));
-		
-		
 	}
 	
 	public function view($slug) {
@@ -79,15 +77,17 @@ class ProductsController extends AppController {
 	}
 	
 	public function cart() {
-		$products = $this->Product->findAllById(array_keys($this->cart));
-		$aProducts = array();
-		foreach($products as $product) {
-			$catID = $product['Product']['cat_id'];
-			$aProducts[$catID][] = $product;
-		}
+		$aProducts = $this->Product->findAllById($this->cart);
+		$aProducts = Hash::combine($aProducts, '{n}.Product.id', '{n}');
+			/*$aProducts = array();
+            foreach($products as $product) {
+                $id = Hash::get($product, 'Product.id');
+                $aProducts[$id][] = $product;
+            }
+            */
 		$this->set('aProducts', $aProducts);
 		
-		$aCatID = array_unique(Hash::extract($products, '{n}.Product.cat_id'));
+		$aCatID = array_unique(Hash::extract($aProducts, '{n}.Product.cat_id'));
 		
 		$conditions = array('object_type' => 'CategoryParam', 'object_id' => $aCatID);
 		$order = 'sort_order';
@@ -100,31 +100,31 @@ class ProductsController extends AppController {
 		$this->set('terms', $this->Page->findBySlug('terms'));
 		if ($this->request->is(array('put', 'post'))) {
 			$this->layout = 'print_doc';
-			
 			$this->set('print_header', $this->_printTpl(Configure::read('Settings.print_header'), $this->request->data('Order')));
 			$this->set('print_footer', $this->_printTpl(Configure::read('Settings.print_footer'), $this->request->data('Order')));
 			$response = $this->render('print_order');
 			$content = $response->body();
-			
-			// отправить заказ на почту админу
-			$Email = new CakeEmail();
-			$Email->template('new_order')->viewVars(compact('aProducts', 'fields', 'aCategories'))
-				->emailFormat('html')
-				->from('info@'.Configure::read('domain.url'))
-				->to(Configure::read('Settings.admin_email'))
-				->bcc('fyr.work@gmail.com')
-				->subject(Configure::read('domain.title').': '.__('New order'))
-				->attachments(array('order.doc' => 
-					array('data' => $content)
-				))
-				->send();
-			
+			if (!TEST_ENV) {
+				// отправить заказ на почту админу
+				$Email = new CakeEmail();
+				$aCart = $this->cart;
+				$Email->template('new_order')->viewVars(compact('aProducts', 'fields', 'aCategories', 'aCart'))
+					->emailFormat('html')
+					->from('info@' . Configure::read('domain.url'))
+					->to(Configure::read('Settings.admin_email'))
+					->bcc('fyr.work@gmail.com')
+					->subject(Configure::read('domain.title') . ': ' . __('New order'))
+					->attachments(array('order.doc' =>
+						array('data' => $content)
+					))
+					->send();
+			}
 			return $response;
 		}
 		
 		// Get related products
 		$xproducts = array();
-		foreach($products as $product) {
+		foreach($aProducts as $product) {
 			if ($product['Product']['xproducts']) {
 				$xproducts = explode(',', $product['Product']['xproducts']);
 				$conditions = array('Product.id' => $xproducts, 'Product.published' => 1);

@@ -65,11 +65,11 @@ a:hover { text-decoration: none;}
 		.header .topContent .phone .phoneHeader { margin-right: 5px;}
 
  .mainMenu { margin: 165px 0 0 0;}
-	.mainMenu a { display: block; text-decoration: none; color: #fff; font-size: 18px; font-weight: 700; float: left; width: 140px; text-align: center; background: rgba(61,92,169,0.23); border-top: 1px solid #6faacc; border-bottom: 1px solid #67a7d8; border-right: 1px solid rgba(82,142,0,0.34); border-left: 1px solid rgba(255,255,255,0.33); padding: 16px 0 16px 0; }
+	.mainMenu a { display: block; text-decoration: none; color: #fff; font-size: 18px; font-weight: 700; float: left; width: 122px; text-align: center; background: rgba(61,92,169,0.23); border-top: 1px solid #6faacc; border-bottom: 1px solid #67a7d8; border-right: 1px solid rgba(82,142,0,0.34); border-left: 1px solid rgba(255,255,255,0.33); padding: 16px 0 16px 0; }
 
 	.mainMenu a:first-child { border-left: 1px solid #7aa0ce; border-top-left-radius: 10px; border-bottom-left-radius: 10px;}
 	.mainMenu a:hover, .mainMenu a.active { background: rgba(87,126,184,0.44); color: #07f; }
-	.mainMenu .contacts, .mainMenu a:last-child { border-right: 1px solid #82aad2; border-top-right-radius: 10px; border-bottom-right-radius: 10px; width: 146px;}
+	.mainMenu .contacts, .mainMenu a:last-child { border-right: 1px solid #82aad2; border-top-right-radius: 10px; border-bottom-right-radius: 10px; width: 130px;}
 
 .carousel { margin-top: 10px;}
 

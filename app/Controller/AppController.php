@@ -59,9 +59,9 @@ class AppController extends Controller {
 		$this->currMenu = $this->_getCurrMenu();
 	    $this->currLink = $this->currMenu;
 	    
-	    $this->cart = (isset($_COOKIE['cart'])) ? str_replace('\"', '"', $_COOKIE['cart']) : '{}';
+	    $this->cart = (isset($_COOKIE['cart'])) ? str_replace('\"', '"', $_COOKIE['cart']) : '[]';
 		$this->cart = (array) json_decode($this->cart);
-		$this->cart = ($this->cart) ? array_combine(array_keys($this->cart), array_values($this->cart)) : array();
+		// $this->cart = ($this->cart) ? array_combine(array_keys($this->cart), array_values($this->cart)) : array();
 		$this->set('aCart', $this->cart);
 	}
 	
