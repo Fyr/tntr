@@ -1,13 +1,13 @@
 <?php
-Router::parseExtensions('html', 'json');
+Router::parseExtensions('html', 'json', 'xml');
 
 Router::connect('/', array('controller' => 'Pages', 'action' => 'home'));
-
+/*
 Router::connect('/sitemap.xml', array(
 	'controller' => 'sitemap',
 	'action' => 'xml'
 ));
-
+*/
 /*
 Router::connect('/pages/view/:slug.html', 
 	array(

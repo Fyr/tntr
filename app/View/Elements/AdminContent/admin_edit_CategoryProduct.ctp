@@ -3,4 +3,5 @@
 	echo $this->element('Article.edit_title');
 	echo $this->element('Article.edit_slug');
 	echo $this->PHForm->input('sorting');
+	echo $this->Form->hidden('Article.status', array('name' => 'data[Article][status][]', 'value' => 'published'));
 	// echo $this->PHForm->input('subcat_id', array('options' => $aCategoryOptions, 'style' => 'width: auto'));

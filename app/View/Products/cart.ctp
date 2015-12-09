@@ -124,8 +124,8 @@ input.error { border: 1px solid #f00; }
 */
 ?>
 	</div>
-	<input type="checkbox" id="agree">	Я согласен с <a href="<?=$this->SiteRouter->url($terms)?>">правилами и условиями</a> оказания услуг сайта <?=Configure::read('domain.title')?>
 	<div class="more">
+		<input type="checkbox" id="agree">	Я согласен с <a href="<?=SiteRouter::url($terms)?>">правилами и условиями</a> оказания услуг сайта <?=Configure::read('domain.title')?>
 		<a href="javascript:void(0)" onclick="onSubmit()">Готово</a>
 	</div>
 <?

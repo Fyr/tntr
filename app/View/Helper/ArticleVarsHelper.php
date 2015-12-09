@@ -1,5 +1,6 @@
 <?php
 App::uses('AppHelper', 'View/Helper');
+App::uses('SiteRouter', 'Lib/Routing');
 class ArticleVarsHelper extends AppHelper {
 	public $helpers = array('Media', 'SiteRouter');
 
@@ -7,7 +8,7 @@ class ArticleVarsHelper extends AppHelper {
 		$objectType = $this->getObjectType($article);
 		$id = $article[$objectType]['id'];
 		
-		$url = $this->SiteRouter->url($article);
+		$url = SiteRouter::url($article);
 		
 		$title = $article[$objectType]['title'];
 		$teaser = nl2br($article[$objectType]['teaser']);

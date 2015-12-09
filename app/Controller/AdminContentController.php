@@ -63,7 +63,7 @@ class AdminContentController extends AdminController {
 			$this->request->data('Seo.object_type', $objectType);
 		}
 		
-		if ($objectType == 'SubcategoryArticle' || $objectType == 'CarSubtype') {
+		if ($objectType == 'SubcategoryArticle') {
 			$this->request->data('Article.cat_id', $objectID);
 		}
 		
@@ -79,7 +79,7 @@ class AdminContentController extends AdminController {
 				)
 			)
 		), false);
-		
+
 		$this->PCArticle->edit(&$id, &$lSaved);
 		$objectType = $this->request->data('Article.object_type');
 		// $objectID = $this->request->data('Article.object_id');

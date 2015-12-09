@@ -63,6 +63,7 @@ class PCArticleComponent extends Component {
 					$this->_->request->data($this->field($field), in_array($field, $this->_->request->data($this->field('status'))));
 				}
 			}
+
 			if ($this->model()->saveAll($this->_->request->data)) {
 				$id = $this->model()->id;
 				$lSaved = true;
